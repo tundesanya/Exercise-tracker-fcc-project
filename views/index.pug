@@ -1,0 +1,29 @@
+extends layout
+
+block content
+    div(class="container title")
+        h2 Exercise Tracker
+    div(class="container")
+        h4 Add a New User
+        form(action="/api/exercise/new-user", method="POST")
+            div(class="container")
+                input(type="text", name="username", placeholder="username*")
+                input(type="submit")
+    div(class="container")
+        h4 Add a New Exercise
+        form(action="/api/exercise/add", method="POST")
+            div(class="container")
+                input(type="text", name="username", placeholder="username*")
+                input(type="text", name="description", placeholder="description*")
+                input(type="text", name="duration", placeholder="duration* (minutes)")
+                input(type="text", name="date", placeholder="date (yyyy-mm-dd)")
+                input(type="submit")
+    div(class="container")
+        h4 Get the Exercises
+        p: code GET /api/exercise/log?username={username}&from=[yyyy-mm-dd]&to=[yyyy-mm-dd]&limit=[LIMIT]
+        p { } = required, [ ] = optional
+        h6 Example Usages:
+        p: code #{url}api/exercise/log?username=test
+        p: code #{url}api/exercise/log?username=test&from=2018-03-06
+        p: code #{url}api/exercise/log?username=test&from=2018-01-01&to=2018-03-05
+        p: code #{url}api/exercise/log?username=test&from=2018-01-01&to=2019-06-05&limit=5
